@@ -1,0 +1,23 @@
+version: "3.7"
+
+services:
+  postgres:
+    build: ./db
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=root
+      
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment: 
+        PGADMIN_DEFAULT_EMAIL: "rmzn-test@gmail.com"
+        PGADMIN_DEFAULT_PASSWORD: "pass-123"
+    ports:
+        - "16543:80"
+    depends_on: 
+        - postgres
+
