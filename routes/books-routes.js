@@ -3,7 +3,7 @@ var router = express.Router();
 
 const booksController = require('../controllers/books-controller');
 
-/* Books Router */
+/* Books - api routings */
 router.get('/', booksController.list);
 router.get('/:id', booksController.getById);
 router.post('/add', booksController.add);

@@ -3,7 +3,7 @@ var router = express.Router();
 
 const usersController = require('../controllers/users-controller');
 
-/* Users Router */
+/* Users - api routings */
 router.get('/', usersController.list);
 router.get('/:id', usersController.getById);
 router.post('/add', usersController.add);

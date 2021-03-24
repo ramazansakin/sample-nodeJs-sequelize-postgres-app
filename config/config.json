@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
+    "username": "postgres",
     "password": "root",
-    "database": "root",
-    "host": "127.0.0.1",
+    "database": "book-exchange-db",
+    "host": "postgres",
     "dialect": "postgres"
   },
   "test": {

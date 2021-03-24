@@ -1,5 +1,2 @@
--- CREATE DATABASE book-exchange-db
---    WITH 
---    OWNER = rmzn
---    ENCODING = 'UTF8'
---    CONNECTION LIMIT = -1;
+-- CREATE USER postgres SUPERUSER;
+-- CREATE DATABASE postgres WITH OWNER postgres;
