@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3'
 
 services:
   postgres:
@@ -7,10 +7,15 @@ services:
     ports:
       - "5432:5432"
     environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=root
-      
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: root
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   pgadmin-compose:
     image: dpage/pgadmin4
     environment: 
@@ -18,6 +23,17 @@ services:
         PGADMIN_DEFAULT_PASSWORD: "pass-123"
     ports:
         - "16543:80"
-    depends_on: 
-        - postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
 
+#  book-exchange-app:
+#    container_name: book-exchange-app
+#    build: ./
+#    environment:
+#      DATABASE_URL: postgres://root:root@postgres:5432/root
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      postgres:
+#        condition: service_healthy

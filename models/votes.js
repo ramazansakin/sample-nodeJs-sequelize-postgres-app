@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       
       Votes.belongsTo(models.Reviews, {
-        foreignKey: 'reviewId'
+        foreignKey: 'reviewId',
+        onDelete: "CASCADE"
       });
 
     }

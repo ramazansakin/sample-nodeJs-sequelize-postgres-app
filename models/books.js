@@ -7,7 +7,8 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Books.belongsTo(models.Users, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: "CASCADE"
       });
 
       Books.hasMany(models.Borrowhistory, {

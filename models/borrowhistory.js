@@ -7,11 +7,13 @@ module.exports = (sequelize, DataTypes) => {
 
     static associate(models) {
       Borrowhistory.belongsTo(models.Users, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
+        onDelete: "CASCADE"
       });
 
       Borrowhistory.belongsTo(models.Books, {
-        foreignKey: 'bookId'
+        foreignKey: 'bookId',
+        onDelete: "CASCADE"
       });
     }
   };

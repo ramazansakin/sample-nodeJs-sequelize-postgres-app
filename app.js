@@ -1,12 +1,15 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
-var indexRouter = require('./routes/index');
-
 const app = express();
 
+/* include all routers */
+var indexRouter = require('./routes/index');
+var userRouter = require('./routes/user-routes');
+var bookRouter = require('./routes/user-routes');
 
+
+// enable cors for any incoming request
 var corsOptions = {
   origin: "*"
 };
@@ -24,10 +27,13 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Book Exchange Application." });
 });
 
-app.use('/api/users', indexRouter);
+app.use('/api/index', indexRouter);
+app.use('/api/users', userRouter);
+app.use('/api/books', bookRouter);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
+app.set('port', port);
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
+  console.log(`Server is running on port ${port}.`);
 });
