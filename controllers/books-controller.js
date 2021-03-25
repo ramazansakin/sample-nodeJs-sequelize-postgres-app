@@ -1,25 +1,26 @@
-const Books = require('../models/books');
+var models = require('../models'); // loads index.js
+var db = require('../config/config.json');
 
 module.exports = {
 
     list(req, res) {
-        return Books.findAll({
+        return db.Books.findAll({
             include: [{
-                model: Books,
-                as: 'books'
-            }],
+                model: Users,
+                as: 'users'
+            }]
         })
             .then((books) => res.status(200).send(books))
             .catch((error) => { res.status(400).send(error); });
     },
 
     getById(req, res) {
-        return Books
+        return db.Books
           .findByPk(req.params.id, {
             include: [{
-              model: Books,
-              as: 'books'
-            }],
+              model: Users,
+              as: 'users'
+            }]
           })
           .then((book) => {
             if (!book) {
@@ -36,7 +37,7 @@ module.exports = {
       },
 
       add(req, res) {
-        return Books
+        return db.Books
           .create({
             title: req.body.title,
             author: req.body.author,
@@ -48,12 +49,12 @@ module.exports = {
       },
     
       update(req, res) {
-        return Books
+        return db.Books
           .findByPk(req.params.id, {
             include: [{
-              model: Books,
-              as: 'books'
-            }],
+              model: Users,
+              as: 'users'
+            }]
           })
           .then(book => {
             if (!book) {
@@ -76,7 +77,7 @@ module.exports = {
       },
     
       delete(req, res) {
-        return Books
+        return db.Books
           .findByPk(req.params.id)
           .then(book => {
             if (!book) {

@@ -1,30 +1,22 @@
 
-DROP TABLE IF EXISTS Token;
 DROP TABLE IF EXISTS token;
 
-DROP TABLE IF EXISTS Usersban;
 DROP TABLE IF EXISTS usersban;
 
-DROP TABLE IF EXISTS Votes;
 DROP TABLE IF EXISTS votes;
 
-DROP TABLE IF EXISTS Rate;
 DROP TABLE IF EXISTS rate;
 
-DROP TABLE IF EXISTS Reviews;
 DROP TABLE IF EXISTS reviews;
 
-DROP TABLE IF EXISTS Borrowhistory;
 DROP TABLE IF EXISTS borrowhistory;
 
-DROP TABLE IF EXISTS Books;
 DROP TABLE IF EXISTS books;
 
-DROP TABLE IF EXISTS Users;
 DROP TABLE IF EXISTS users;
 
 
-CREATE TABLE Users (
+CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(20),
     password VARCHAR(15),
@@ -35,7 +27,7 @@ CREATE TABLE Users (
 );
 
 
-CREATE TABLE Books(
+CREATE TABLE books(
     id SERIAL PRIMARY KEY,
     title VARCHAR(20),
     author VARCHAR(20),
@@ -46,7 +38,7 @@ CREATE TABLE Books(
 );
 
 
-CREATE TABLE Borrowhistory(
+CREATE TABLE borrowhistory(
     id SERIAL PRIMARY KEY,
     bookId INT,
     userId INT,
@@ -56,7 +48,7 @@ CREATE TABLE Borrowhistory(
 );
 
 
-CREATE TABLE Reviews(
+CREATE TABLE reviews(
     id SERIAL PRIMARY KEY,
     review VARCHAR(50),
     isDeleted BOOLEAN,
@@ -67,7 +59,7 @@ CREATE TABLE Reviews(
 );
 
 
-CREATE TABLE Rate(
+CREATE TABLE rate(
     id SERIAL PRIMARY KEY,
     rate INT,
     bookId INT,
@@ -77,7 +69,7 @@ CREATE TABLE Rate(
 );
 
 
-CREATE TABLE Votes(
+CREATE TABLE votes(
     id SERIAL PRIMARY KEY,
     liked BOOLEAN,
     reviewId INT,
@@ -87,7 +79,7 @@ CREATE TABLE Votes(
 );
 
 
-CREATE TABLE Usersban(
+CREATE TABLE usersban(
     id SERIAL PRIMARY KEY,
     banned DATE,
     description VARCHAR(50),
@@ -97,7 +89,7 @@ CREATE TABLE Usersban(
 
 
 -- when logout blacklist the token, so if somebody steal it not to be able to log in with others token
-CREATE TABLE Token(
+CREATE TABLE token(
     id SERIAL PRIMARY KEY,
     token VARCHAR(50),
     blacklistedOn BOOLEAN

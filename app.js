@@ -6,14 +6,13 @@ const app = express();
 /* include all routers */
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/user-routes');
-var bookRouter = require('./routes/user-routes');
+var bookRouter = require('./routes/books-routes');
 
 
 // enable cors for any incoming request
 var corsOptions = {
   origin: "*"
 };
-
 app.use(cors(corsOptions));
 
 // parse requests of content-type - application/json
@@ -31,9 +30,4 @@ app.use('/api/index', indexRouter);
 app.use('/api/users', userRouter);
 app.use('/api/books', bookRouter);
 
-// set port, listen for requests
-const port = process.env.PORT || 8080;
-app.set('port', port);
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}.`);
-});
+module.exports = app;

@@ -1,12 +1,14 @@
 {
   "development": {
+    "dialect": "sqlite",
+    "storage": "./data/data.sqlite"
+  },
+  "test": {
     "username": "postgres",
     "password": "root",
     "database": "book-exchange-db",
     "host": "postgres",
     "dialect": "postgres"
-  },
-  "test": {
   },
   "production": {
   }

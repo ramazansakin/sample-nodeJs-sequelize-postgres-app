@@ -7,9 +7,9 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: book-exchange-db
+      DB_USERNAME: postgres
+      DB_PASSWORD: root
+      DB_NAME: book-exchange-db
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -31,9 +31,12 @@ services:
     container_name: book-exchange-app
     build: ./
     environment:
-      DATABASE_URL: postgres://postgres:root@postgres:5432/book-exchange-db
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: book-exchange-db
+      DB_USERNAME: postgres
+      DB_HOSTNAME: postgres
     ports:
       - "3000:3000"
     depends_on:
-      postgres:
+      db:
         condition: service_healthy
